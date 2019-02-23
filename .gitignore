@@ -1,2 +1,3 @@
 /www/vendor/*
 /www/app/config/var/doctrine/*
+/www/html/API/error_log
