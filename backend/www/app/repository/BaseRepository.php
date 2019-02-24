@@ -7,43 +7,50 @@ abstract class BaseRepository {
 	protected $em;
 	protected $entityType = "BaseEntity";
 
-	final public static function get_instance($container) {
+	final public static function get_instance($container)
+	{
 		return isset(static::$instance)
 			? static::$instance
 			: static::$instance = new static($container[EntityManager::class]);
 	}
 
-	final private function __construct(EntityManager $em) {
+	final private function __construct(EntityManager $em)
+	{
 		$this->em = $em;
 		$this->init();
 	}
 
 	protected function init() {}
 
-	public function persist(BaseEntity $object) {
+	public function persist(BaseEntity $object)
+	{
 		$this->em->persist($object);
 		$this->em->flush();
 		return $object;
 	}
 
-	public function remove(BaseEntity $object) {
+	public function remove(BaseEntity $object)
+	{
 		$this->em->remove($object);
 		$this->em->flush();
 		return $object;
 	}
 
-	public function get_all() {
+	public function get_all()
+	{
 		$repository = $this->em->getRepository($this->entityType);
 		$list = $repository->findAll();
 		return $list;
 	}
 
-	public function get_by_id($id) {
+	public function get_by_id($id)
+	{
 		$object = $this->em->find($this->entityType, $id);
 		return $object;
 	}
 
-	public function merger_to_update(&$entity, $changes) {
+	public function merger_to_update(&$entity, $changes)
+	{
 		foreach ($changes->as_array() as $key => $value) {
 			if($value) {
 				$method = "set".ucfirst($key);

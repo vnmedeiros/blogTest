@@ -4,12 +4,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $URL_BASE = '/authors';
 
-function mount_data($data) {
-	$data = json_decode($data);
-	$author = new AuthorEntity($data->name);
-	return $author;
-}
-
 $app->get("$URL_BASE", function (Request $request, Response $response, $args) {
 		$authors = AuthorRepository::get_instance($this)->get_all();
 		return $response->withJson($authors, 200)
@@ -24,7 +18,7 @@ $app->get("$URL_BASE/{id}", function (Request $request, Response $response, $arg
 });
 
 $app->post("$URL_BASE", function (Request $request, Response $response) {
-	$author = mount_data($request->getBody());
+	$author = AuthorRepository::mount_data($request->getBody());
 	$author = AuthorRepository::get_instance($this)->persist($author);
 	return $response->withStatus(200)->withHeader('Content-Type', 'application/json')
 				->write(json_encode($author));
@@ -32,7 +26,7 @@ $app->post("$URL_BASE", function (Request $request, Response $response) {
 
 $app->put("$URL_BASE/{id}", function (Request $request, Response $response, $args) {
 	$id = $args['id'];
-	$author_update = mount_data($request->getBody());
+	$author_update = AuthorRepository::mount_data($request->getBody());
 	$author = AuthorRepository::get_instance($this)->get_by_id($id);
 	AuthorRepository::get_instance($this)->merger_to_update($author, $author_update);
 	$author = AuthorRepository::get_instance($this)->persist($author);

@@ -16,13 +16,34 @@ class AuthorEntity extends BaseEntity {
 	**/
 	protected $posts;
 
-	public function __construct($name) {
+	public function __construct($name)
+	{
 		$this->name = $name;
 		$this->posts = new ArrayCollection();
 	}
 
-	public function addPost(PostEntity $post) {
+	public function addPost(PostEntity $post)
+	{
 		$this->posts[] = $post;
 	}
 
+
+	/**
+	 * Get the value of name
+	 */ 
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * Set the value of name
+	 *
+	 * @return  self
+	 */ 
+	public function setName($name)
+	{
+		$this->name = $name;
+		return $this;
+	}
 }
