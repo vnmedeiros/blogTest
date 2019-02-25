@@ -1,6 +1,6 @@
 <?php
 class PostRepository extends BaseRepository {
-	protected $entityType = "PostRepository";
+	protected $entityType = "PostEntity";
 
 	public static function mount_data($data)
 	{

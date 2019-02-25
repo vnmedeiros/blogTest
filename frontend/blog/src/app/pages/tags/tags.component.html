@@ -1,0 +1,21 @@
+<table>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>tag</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let tag of tags">
+			<td>{{tag.id}}</td>
+			<td>{{tag.name}}</td>
+			<td>
+				<button (click)="deleteTag(tag)"> Delete</button>
+				<button (click)="editTag(tag)" > Edit</button>
+				<a [routerLink]="['/edit', tag.id]">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>
