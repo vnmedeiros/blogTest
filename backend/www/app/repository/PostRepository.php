@@ -9,12 +9,20 @@ class PostRepository extends BaseRepository {
 														$data->body,
 														$data->image,
 														$data->published);
-		$author = AuthorRepository::get_instance($this)->get_by_id($data->author_id);
-		$post->author = $author;
+		
+		if (isset($data->author->id) &&  (!empty($data->author->id)) ) {
+			
+			AuthorRepository::get_instance(self::$context)->entityType = "AuthorEntity";
+			$author = AuthorRepository::get_instance(self::$context)->get_by_id($data->author->id);
+			$post->setAuthor($author);
+			AuthorRepository::get_instance(self::$context)->$entityType = "PostEntity";
+		}
 	
-		foreach($data->tags as $tag_id) {
-			$tag = TagRepository::get_instance($this)->get_by_id($tag_id);
-			$post->addTag($tag);
+		if (isset($data->tags) &&  (!empty($data->tags)) ) {
+			foreach($data->tags as $tag_id) {
+				$tag = TagRepository::get_instance(self::getContext())->get_by_id($tag_id);
+				$post->addTag($tag);
+			}
 		}
 	
 		return $post;

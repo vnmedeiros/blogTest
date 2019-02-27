@@ -6,17 +6,20 @@ abstract class BaseRepository {
 	protected static $instance;
 	protected $em;
 	protected $entityType = "BaseEntity";
+	protected static $context = null;
 
-	final public static function get_instance($container)
+	final public static function get_instance($context)
 	{
 		return isset(static::$instance)
 			? static::$instance
-			: static::$instance = new static($container[EntityManager::class]);
+			: static::$instance = new static($context);
 	}
 
-	final private function __construct(EntityManager $em)
+	//final private function __construct(EntityManager $em)
+	final private function __construct($context)
 	{
-		$this->em = $em;
+		self::$context = $context;
+		$this->em = self::$context[EntityManager::class];
 		$this->init();
 	}
 

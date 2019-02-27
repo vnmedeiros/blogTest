@@ -5,13 +5,23 @@ import { TagsComponent } from './pages/tags/tags.component';
 import { AuthorsComponent } from './pages/authors/authors.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { TagSingleComponent } from './pages/tag-single/tag-single.component';
+import { AuthorSingleComponent } from './pages/author-single/author-single.component';
+import { PostSingleComponent } from './pages/post-single/post-single.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent},
+	
 	{ path: 'tags', component: TagsComponent},
-	{ path: 'tags/:id', component: TagSingleComponent },
+	{ path: 'tag/:id', component: TagSingleComponent },
+	{ path: 'tag', component: TagSingleComponent},
+
 	{ path: 'authors', component: AuthorsComponent},
+	{ path: 'author/:id', component: AuthorSingleComponent},
+	{ path: 'author', component: AuthorSingleComponent},
+	
 	{ path: 'posts', component: PostsComponent},
+	{ path: 'post/:id', component: PostSingleComponent},
+	{ path: 'post', component: PostSingleComponent}
 ];
 
 @NgModule({

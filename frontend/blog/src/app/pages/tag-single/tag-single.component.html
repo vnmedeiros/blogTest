@@ -1,8 +1,10 @@
-<p>
-  tag-single works!
-</p>
-<label>id:</label>
-<label>{{tag.id}}</label>
+<form [formGroup]="tagForm">
+	<label>id:</label>
+	<input type="text" disabled name="id" [(ngModel)]="tag.id" formControlName="id"/>
 
-<label>Name:</label>
-<input type="text" [(ngModel)]="tag.name"/>
+	<label>Name:</label>
+	<input type="text" name="name" [(ngModel)]="tag.name" formControlName="name"/>
+	
+	<button [routerLink]="['/tags']"> Voltar</button>
+	<button [disabled]="tagForm.invalid" type="button" (click)="onSubmit()">Save</button>
+</form>

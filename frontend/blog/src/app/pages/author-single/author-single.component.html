@@ -1,0 +1,10 @@
+<form [formGroup]="authorForm">
+	<label>id:</label>
+	<input type="text" disabled name="id" [(ngModel)]="author.id" formControlName="id"/>
+
+	<label>Name:</label>
+	<input type="text" name="name" [(ngModel)]="author.name" formControlName="name"/>
+	
+	<button [routerLink]="['/authors']"> Voltar</button>
+	<button [disabled]="authorForm.invalid" type="button" (click)="onSubmit()">Save</button>
+</form>

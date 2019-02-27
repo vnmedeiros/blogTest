@@ -1,3 +1,21 @@
-<p>
-  authors works!
-</p>
+<button [routerLink]="['/author']"> new</button>
+<table>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let author of authors">
+			<td>{{author.id}}</td>
+			<td>{{author.name}}</td>
+			<td>
+				<button (click)="deleteAuthor(author)"> Delete</button>
+				<button [routerLink]="['/author', author.id]">Edit</button>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>

@@ -37,7 +37,9 @@ class PostEntity extends BaseEntity {
 		$this->published = $published;
 
 		$formated = preg_replace('/\s/', '_', $this->title);
-		$this->slug = trim($stripped);
+		$this->slug = trim($formated);
+		
+		$this->tags = new ArrayCollection();
 	}
 
 	public function addTag(TagEntity $tag)
@@ -138,6 +140,26 @@ class PostEntity extends BaseEntity {
 	public function setPublished($published)
 	{
 		$this->published = $published;
+		return $this;
+	}
+
+	/**
+	 * Get 
+	 */ 
+	public function getAuthor()
+	{
+		return $this->author;
+	}
+
+	/**
+	 * Set
+	 *
+	 * @return  self
+	 */ 
+	public function setAuthor(AuthorEntity $author)
+	{
+		$this->author = $author;
+
 		return $this;
 	}
 }

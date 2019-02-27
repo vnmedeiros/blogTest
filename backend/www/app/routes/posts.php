@@ -26,7 +26,7 @@ $app->post("$URL_BASE", function (Request $request, Response $response) {
 
 $app->put("$URL_BASE/{id}", function (Request $request, Response $response, $args) {
 	$id = $args['id'];
-	$post_update = PostRepository::mount_data($request->getBody());
+	$post_update = PostRepository::get_instance($this)::mount_data($request->getBody());
 	$post = PostRepository::get_instance($this)->get_by_id($id);
 	PostRepository::get_instance($this)->merger_to_update($post, $post_update);
 	$post = PostRepository::get_instance($this)->persist($post);

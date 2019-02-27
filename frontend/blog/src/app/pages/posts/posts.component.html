@@ -1,3 +1,37 @@
-<p>
-  posts works!
-</p>
+<button [routerLink]="['/post']"> new</button>
+<table>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>slug</th>
+			<th>published</th>
+			<th>author</th>
+			<th>categories</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let post of posts">
+			<td>{{post.id}}</td>
+			<td>{{post.title}}</td>
+			<td>{{post.slug}}</td>
+			<td>{{post.published}}</td>
+			<td>{{post.author?.name}}</td>
+			<td>
+					<ul>
+						<li *ngFor = "let cat of post.categories">
+							{{cat.name}}
+						</li>
+					</ul>
+			</td>
+			
+			<td>
+				<button (click)="deleteAuthor(post)"> Delete</button>
+				<button [routerLink]="['/post', post.id]">Edit</button>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>
+

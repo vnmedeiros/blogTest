@@ -21,12 +21,24 @@ export class TagService {
 		return this.http.get<Tag>(`${this.URL}/${id}`);
 	}
 
+	insertTag(tag: Tag): Observable<Tag> {
+		return this.http.post<Tag>(`${this.URL}`, tag);
+	}
+
 	updateTag(tag: Tag): Observable<Tag> {
 		return this.http.put<Tag>(`${this.URL}/${tag.id}`, tag);
 	}
 
 	deleteTag(id: number): Observable<Tag> {
 		return this.http.delete<Tag>(`${this.URL}/${id}`);
+	}
+
+	insetOrUpdate(tag: Tag): Observable<Tag> {
+		if(tag.id) {
+			return this.updateTag(tag);
+		} else {
+			return this.insertTag(tag);
+		}
 	}
 
 }

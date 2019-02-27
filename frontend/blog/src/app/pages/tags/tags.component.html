@@ -1,3 +1,4 @@
+<button [routerLink]="['/tag']"> new</button>
 <table>
 	<thead>
 		<tr>
@@ -11,8 +12,7 @@
 			<td>{{tag.name}}</td>
 			<td>
 				<button (click)="deleteTag(tag)"> Delete</button>
-				<button (click)="editTag(tag)" > Edit</button>
-				<a [routerLink]="['/edit', tag.id]">Edit</a>
+				<button [routerLink]="['/tag', tag.id]">Edit</button>
 			</td>
 		</tr>
 	</tbody>
