@@ -1,6 +1,9 @@
 <?php
 class TagRepository extends BaseRepository {
-	protected $entityType = "TagEntity";
+	
+	protected function init() {
+		$this->entityType = "TagEntity";
+	}
 
 	public static function mount_data($data)
 	{

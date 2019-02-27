@@ -1,25 +1,29 @@
 <?php
 use Doctrine\ORM\EntityManager;
 
-abstract class BaseRepository {
+class BaseRepository {
 
 	protected static $instance;
 	protected $em;
-	protected $entityType = "BaseEntity";
-	protected static $context = null;
+	protected static $entityType = "BaseEntity";
 
-	final public static function get_instance($context)
+	final public static function get_instance( )
 	{
-		return isset(static::$instance)
-			? static::$instance
-			: static::$instance = new static($context);
+		//if (!isset(static::$instance))
+			static::$instance = new static(static::$instance->em);
+		static::$instance->init();
+		return static::$instance;
 	}
 
-	//final private function __construct(EntityManager $em)
-	final private function __construct($context)
+	final public function setEntityManager(EntityManager $em) 
 	{
-		self::$context = $context;
-		$this->em = self::$context[EntityManager::class];
+		$this->em = $em;
+		return $this;
+	}
+
+	final private function __construct(EntityManager $em = null)
+	{
+		$this->em = $em;
 		$this->init();
 	}
 

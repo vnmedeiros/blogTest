@@ -13,9 +13,7 @@ class TagEntity extends BaseEntity {
 
 	/**
 	* @ORM\ManyToMany(targetEntity="PostEntity", inversedBy="tags")
-	* @ORM\JoinTable(name="post_tag",
-	*     joinColumns={@JoinColumn(name="tag_id", referencedColumnName="id")},
-	*     inverseJoinColumns={@JoinColumn(name="post_id", referencedColumnName="id")})
+	* @ORM\JoinTable(name="post_tag")
 	**/
 	protected $posts;
 

@@ -18,6 +18,7 @@ $container[EntityManager::class] = getEntityManager($container);
 
 $app = new App($container);
 
+BaseRepository::get_instance()->setEntityManager($container[EntityManager::class]);
 $dir = '../../app/routes';
 foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS)) as $file) {
     require $file;

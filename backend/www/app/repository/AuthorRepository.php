@@ -1,6 +1,9 @@
 <?php
 class AuthorRepository extends BaseRepository {
-	protected $entityType = "AuthorEntity";
+
+	protected function init() {
+		$this->entityType = "AuthorEntity";
+	}
 
 	public static function mount_data($data)
 	{
