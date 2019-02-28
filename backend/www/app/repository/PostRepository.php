@@ -19,12 +19,11 @@ class PostRepository extends BaseRepository {
 		}
 	
 		if (isset($data->tags) &&  (!empty($data->tags)) ) {
-			foreach($data->tags as $tag_id) {
-				$tag = TagRepository::get_instance()->get_by_id($tag_id);
+			foreach($data->tags as $tag) {
+				$tag = TagRepository::get_instance()->get_by_id($tag->id);
 				$post->addTag($tag);
 			}
 		}
-	
 		return $post;
 	}
 

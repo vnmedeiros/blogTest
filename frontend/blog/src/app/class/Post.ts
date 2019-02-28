@@ -10,5 +10,5 @@ export class Post
 	public image: String;
 	public published: boolean;
 	public author: Author;
-	public categories: Tag[];
+	public tags: Tag[];
 }

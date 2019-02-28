@@ -1,24 +1,29 @@
 <form [formGroup]="postForm">
 		<label>id:</label>
 		<input type="text" disabled name="id" [(ngModel)]="post.id" formControlName="id"/>
-	
+
 		<label>title:</label>
 		<input type="text" name="title" [(ngModel)]="post.title" formControlName="title"/>
 
 		<label>body:</label>
 		<input type="text" name="body" [(ngModel)]="post.body" formControlName="body"/>
-	
+
 		<label>image:</label>
 		<input type="text" name="image" [(ngModel)]="post.image" formControlName="image"/>
 
 		<label>author:</label>
 		<select name="author" formControlName="author" [(ngModel)]="post.author">
-				<option *ngFor="let author of authorList" [ngValue]="author">{{author.name}}</option> 
+			<option *ngFor="let author of authorList" [ngValue]="author">{{author.name}}</option> 
 		</select>
-		
+
 		<label>published:</label>
 		<input type="text" name="published" [(ngModel)]="post.published" formControlName="published"/>
-		
+
+		<label formArrayName="tags" *ngFor="let tag of postForm.controls.tags.controls; let i = index">
+			<input type="checkbox" [formControlName]="i">
+			{{tagList[i].name}}
+		</label>
+
 		<button [routerLink]="['/posts']"> Voltar</button>
 		<button [disabled]="postForm.invalid" type="button" (click)="onSubmit()">Save</button>
 	</form>

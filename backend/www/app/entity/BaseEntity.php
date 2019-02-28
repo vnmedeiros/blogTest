@@ -22,7 +22,13 @@ class BaseEntity implements JsonSerializable {
 
 	public function as_array()
 	{
-		$vars = get_object_vars($this);
+		$temp = get_object_vars($this);
+		$vars = [];
+		foreach($temp as $key => $value) {
+		    if(method_exists($this, 'get'.ucfirst($key))) {
+				$vars[$key] =  $value;
+			}
+		}
 		return $vars;
 	}
 

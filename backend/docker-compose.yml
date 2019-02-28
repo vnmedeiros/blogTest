@@ -12,7 +12,7 @@ services:
   db:
     image: mysql:5.7
     ports: 
-      - "4406:3306"
+      - "5506:3306"
     environment:
       MYSQL_DATABASE: myDb
       MYSQL_USER: user

@@ -26,8 +26,9 @@ class PostEntity extends BaseEntity {
 
 	/**
 	* @ORM\ManyToMany(targetEntity="TagEntity", mappedBy="posts")
+    * @ORM\JoinTable(name="post_tag")
 	*/
-	private $tags;
+	protected $tags;
 
 	public function __construct($title, $body, $image='', $published=false)
 	{
@@ -160,6 +161,25 @@ class PostEntity extends BaseEntity {
 	{
 		$this->author = $author;
 
+		return $this;
+	}
+
+	/**
+	 * Get the value of title
+	 */ 
+	public function getTags()
+	{
+		return $this->tags;
+	}
+
+	/**
+	 * Set the value of title
+	 *
+	 * @return  self
+	 */ 
+	public function setTags(ArrayCollection $tag)
+	{
+		$this->tags = $tag;
 		return $this;
 	}
 }
