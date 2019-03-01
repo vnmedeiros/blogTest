@@ -28,7 +28,7 @@ class BaseEntity implements JsonSerializable {
 		$vars = [];
 		foreach($temp as $key => $value) {
 			if(method_exists($this, 'get'.ucfirst($key))) {
-				if($key == 'tags') {
+				if($value instanceof Doctrine\Common\Collections\ArrayCollection) {
 					$vars[$key] =  $value->toArray();
 				} else {
 					$vars[$key] =  $value;
