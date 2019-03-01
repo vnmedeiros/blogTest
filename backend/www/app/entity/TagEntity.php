@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,8 +13,7 @@ class TagEntity extends BaseEntity {
 	protected $name;
 
 	/**
-	* @ORM\ManyToMany(targetEntity="PostEntity", inversedBy="tags")
-	* @ORM\JoinTable(name="post_tag")
+	* @ORM\ManyToMany(targetEntity="PostEntity", inversedBy="tags", fetch="EAGER")
 	**/
 	protected $posts;
 
@@ -40,5 +40,34 @@ class TagEntity extends BaseEntity {
 	{
 		$this->name = $name;
 		return $this;
+	}
+
+	public function getPosts(): Collection
+	{
+		return $this->posts;
+	}
+
+	public function setPosts($posts)
+	{
+		$this->posts = $posts;
+		return $this;
+	}
+
+	public function addPost(PostEntity $post)
+	{
+		if ($this->posts->contains($post)) {
+				return;
+		}
+		$this->posts->add($post);
+		$post->addTag($this);
+	}
+
+	public function removePost(PostEntity $post)
+	{
+		if (!$this->posts->contains($post)) {
+				return;
+		}
+		$this->posts->removeElement($post);
+		$post->removeTag($this);
 	}
 }

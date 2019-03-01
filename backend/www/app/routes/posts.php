@@ -1,8 +1,17 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Doctrine\Common\Collections\ArrayCollection;
 
 $URL_BASE = '/posts';
+
+$app->get("$URL_BASE/teste", function (Request $request, Response $response, $args) {
+	$post = PostRepository::get_instance()->get_by_id(1);
+	$tags = TagRepository::get_instance()->findByPost($post);
+	$post->setTags(new ArrayCollection($tags));
+	return $response->withJson($post, 200)
+			->withHeader('Content-type', 'application/json');
+});
 
 $app->get("$URL_BASE", function (Request $request, Response $response, $args) {
 		$posts = PostRepository::get_instance()->get_all();

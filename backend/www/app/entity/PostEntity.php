@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,8 +26,16 @@ class PostEntity extends BaseEntity {
 	protected $author;
 
 	/**
-	* @ORM\ManyToMany(targetEntity="TagEntity", mappedBy="posts")
-    * @ORM\JoinTable(name="post_tag")
+	* @ORM\ManyToMany(targetEntity="TagEntity", inversedBy="posts", cascade={"persist"}, fetch="EAGER" )
+	* @ORM\JoinTable(
+	*  name="post_tag",
+	*  joinColumns={
+	*      @ORM\JoinColumn(name="postentity_id", referencedColumnName="id")
+	*  },
+	*  inverseJoinColumns={
+	*      @ORM\JoinColumn(name="tagentity_id", referencedColumnName="id")
+	*  }
+	* )
 	*/
 	protected $tags;
 
@@ -45,9 +54,21 @@ class PostEntity extends BaseEntity {
 
 	public function addTag(TagEntity $tag)
 	{
-		$this->tags[] = $tag;
+		if ($this->tags->contains($tag)) {
+			return;
+		}
+		$this->tags->add($tag);
+		$tag->addPost($this);
 	}
 
+	public function removeTag(TagEntity $tag)
+	{
+		if (!$this->tags->contains($tag)) {
+			return;
+		}
+		$this->tags->removeElement($tag);
+		$tag->removePost($this);
+	}
 
 	/**
 	 * Get the value of title
@@ -167,7 +188,7 @@ class PostEntity extends BaseEntity {
 	/**
 	 * Get the value of title
 	 */ 
-	public function getTags()
+	public function getTags(): Collection
 	{
 		return $this->tags;
 	}
@@ -177,9 +198,9 @@ class PostEntity extends BaseEntity {
 	 *
 	 * @return  self
 	 */ 
-	public function setTags(ArrayCollection $tag)
+	public function setTags(Collection $tags)
 	{
-		$this->tags = $tag;
+		$this->tags = $tags;
 		return $this;
 	}
 }

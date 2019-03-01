@@ -2,6 +2,8 @@
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class BaseEntity implements JsonSerializable {
 	
 	/** @ORM\Id
@@ -25,8 +27,12 @@ class BaseEntity implements JsonSerializable {
 		$temp = get_object_vars($this);
 		$vars = [];
 		foreach($temp as $key => $value) {
-		    if(method_exists($this, 'get'.ucfirst($key))) {
-				$vars[$key] =  $value;
+			if(method_exists($this, 'get'.ucfirst($key))) {
+				if($key == 'tags') {
+					$vars[$key] =  $value->toArray();
+				} else {
+					$vars[$key] =  $value;
+				}
 			}
 		}
 		return $vars;

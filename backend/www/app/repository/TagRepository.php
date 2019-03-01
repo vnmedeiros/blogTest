@@ -11,4 +11,14 @@ class TagRepository extends BaseRepository {
 		$tag = new TagEntity($data->name);
 		return $tag;
 	}
+
+	public function findByPost($post)
+	{
+		$repository = $this->em->getRepository($this->entityType);
+		$tags = $repository->createQueryBuilder('tag')
+			->where(':post MEMBER OF tag.posts')
+			->setParameter('post', $post)
+			->getQuery();
+		return $tags->getResult();
+	}
 }

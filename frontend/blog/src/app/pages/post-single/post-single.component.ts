@@ -49,10 +49,12 @@ export class PostSingleComponent implements OnInit {
 				this.tagList = data;
 				this.tagList.map((obj, id) => {
 					let selected = false;
-					for (let tag of this.post.tags) {
-						if (obj.id == tag.id) {
-							selected = true;
-							break;
+					if(this.post.tags){
+						for (let tag of this.post.tags) {
+							if (obj.id == tag.id) {
+								selected = true;
+								break;
+							}
 						}
 					}
 					const control = new FormControl(selected); // if first item set to true, else false
