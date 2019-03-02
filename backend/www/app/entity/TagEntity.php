@@ -13,7 +13,7 @@ class TagEntity extends BaseEntity {
 	protected $name;
 
 	/**
-	* @ORM\ManyToMany(targetEntity="PostEntity", inversedBy="tags", fetch="EAGER")
+	* @ORM\ManyToMany(targetEntity="PostEntity", mappedBy="tags", cascade={"persist"})
 	**/
 	protected $posts;
 
@@ -42,17 +42,6 @@ class TagEntity extends BaseEntity {
 		return $this;
 	}
 
-	public function getPosts(): Collection
-	{
-		return $this->posts;
-	}
-
-	public function setPosts($posts)
-	{
-		$this->posts = $posts;
-		return $this;
-	}
-
 	public function addPost(PostEntity $post)
 	{
 		if ($this->posts->contains($post)) {
@@ -69,5 +58,17 @@ class TagEntity extends BaseEntity {
 		}
 		$this->posts->removeElement($post);
 		$post->removeTag($this);
+	}
+
+	public function getPosts()
+	{
+		return $this->posts;
+	}
+
+	public function setPosts($posts)
+	{
+		$this->posts = $posts;
+
+		return $this;
 	}
 }

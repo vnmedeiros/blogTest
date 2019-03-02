@@ -26,7 +26,7 @@ class PostEntity extends BaseEntity {
 	protected $author;
 
 	/**
-	* @ORM\ManyToMany(targetEntity="TagEntity", inversedBy="posts", cascade={"persist"}, fetch="EAGER" )
+	* @ORM\ManyToMany(targetEntity="TagEntity", inversedBy="posts", cascade={"persist"})
 	* @ORM\JoinTable(
 	*  name="post_tag",
 	*  joinColumns={
@@ -188,7 +188,7 @@ class PostEntity extends BaseEntity {
 	/**
 	 * Get the value of title
 	 */ 
-	public function getTags(): Collection
+	public function getTags()
 	{
 		return $this->tags;
 	}

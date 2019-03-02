@@ -27,4 +27,15 @@ class PostRepository extends BaseRepository {
 		return $post;
 	}
 
+	public function findByAuthor($author)
+	{
+		$repository = $this->em->getRepository($this->entityType);
+		$posts = $repository->createQueryBuilder('post')
+			->where('post.author = :author')
+			->setParameter('author', $author)
+			->getQuery();
+		//echo $posts->getSql();
+		return $posts->getResult();
+	}
+
 }
