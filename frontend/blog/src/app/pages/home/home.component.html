@@ -1,0 +1,21 @@
+
+<aside>
+	<label>Categories:</label>
+	<select name="tag">
+		<option *ngFor="let tag of tags" [ngValue]="tag">{{tag.name}}</option> 
+	</select>
+</aside>
+<section>
+	<header>
+		<h3>My Blog</h3>
+	</header>
+	<article *ngFor = "let post of posts">
+		<span class="content-post autor">{{post.author?.name}}</span>
+		<span class="content-post title">{{post.title}}</span>
+		<ul class="horizontal-list">
+			<li *ngFor = "let cat of post.tags">
+				{{cat.name}}
+			</li>
+		</ul>
+	</article>
+</section>

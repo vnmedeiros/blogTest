@@ -12,6 +12,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { TagSingleComponent } from './pages/tag-single/tag-single.component';
 import { AuthorSingleComponent } from './pages/author-single/author-single.component';
 import { PostSingleComponent } from './pages/post-single/post-single.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PostSingleComponent } from './pages/post-single/post-single.component';
     PostsComponent,
     TagSingleComponent,
     AuthorSingleComponent,
-    PostSingleComponent
+    PostSingleComponent,
+    HomeComponent
   ],
   imports: [
 		BrowserModule,

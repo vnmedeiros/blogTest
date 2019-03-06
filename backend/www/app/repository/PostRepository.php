@@ -34,7 +34,6 @@ class PostRepository extends BaseRepository {
 			->where('post.author = :author')
 			->setParameter('author', $author)
 			->getQuery();
-		//echo $posts->getSql();
 		return $posts->getResult();
 	}
 

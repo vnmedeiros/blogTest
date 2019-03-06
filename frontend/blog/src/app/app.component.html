@@ -1,10 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  BLOG
-</div>
+<header>
+	<nav>
+		<ul class="horizontal gray">
+			<li><a routerLink="" >Home</a></li>
+			<li><a routerLink="/tags" routerLinkActive="active">Tags</a></li>
+			<li><a routerLink="/authors" routerLinkActive="active">Authors</a></li>
+			<li><a routerLink="/posts" routerLinkActive="active">Posts</a></li>
+		</ul>
+	</nav>
+</header>
 
-<aside>
-	menu...
-</aside>
+<section>
+	<router-outlet></router-outlet>
+</section>
 
-<router-outlet></router-outlet>

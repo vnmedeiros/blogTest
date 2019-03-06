@@ -7,6 +7,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { TagSingleComponent } from './pages/tag-single/tag-single.component';
 import { AuthorSingleComponent } from './pages/author-single/author-single.component';
 import { PostSingleComponent } from './pages/post-single/post-single.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent},
@@ -21,7 +22,10 @@ const routes: Routes = [
 	
 	{ path: 'posts', component: PostsComponent},
 	{ path: 'post/:id', component: PostSingleComponent},
-	{ path: 'post', component: PostSingleComponent}
+	{ path: 'post', component: PostSingleComponent},
+
+	{ path: '', component: HomeComponent},
+	{ path: 'home', component: HomeComponent}
 ];
 
 @NgModule({

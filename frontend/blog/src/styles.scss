@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+//color variables:
+$gray-1: #333;
+$gray-2: #666;
+$gray-border: #e7e7e7;
+$gray-background: #f3f3f3;
+
+$blue: #008CBA;
+$blue-1: #0692AD33;

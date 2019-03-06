@@ -1,0 +1,41 @@
+@import "../styles.scss";
+
+section {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+//menu:
+ul.horizontal {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: $gray-1;
+}
+
+ul.horizontal li {
+	float: left;
+}
+
+ul.gray {
+	border: 1px solid $gray-border;
+	background-color: $gray-background;
+}
+
+ul.gray li a {
+	display: block;
+	color: $gray-2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul.gray li a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+ul.gray li a.active {
+	color: white;
+	background-color: #008CBA;
+}
