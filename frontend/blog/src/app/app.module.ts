@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerModule } from 'angular2-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { TagSingleComponent } from './pages/tag-single/tag-single.component';
 import { AuthorSingleComponent } from './pages/author-single/author-single.component';
 import { PostSingleComponent } from './pages/post-single/post-single.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ViewComponent } from './pages/view/view.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +26,16 @@ import { HomeComponent } from './pages/home/home.component';
     TagSingleComponent,
     AuthorSingleComponent,
     PostSingleComponent,
-    HomeComponent
+    HomeComponent,
+    ViewComponent
   ],
   imports: [
 		BrowserModule,
 		HttpClientModule,
 		FormsModule,
 		ReactiveFormsModule,
-    AppRoutingModule
+		SpinnerModule,
+		AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

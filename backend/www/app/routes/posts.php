@@ -20,6 +20,14 @@ $app->get("$URL_BASE/{id}", function (Request $request, Response $response, $arg
 				->withHeader('Content-type', 'application/json');
 });
 
+$app->get("$URL_BASE/tag/{id_tag}", function (Request $request, Response $response, $args) {
+	$id_tag = $args['id_tag'];
+	$tag = TagRepository::get_instance()->get_by_id($id_tag);
+	$posts = PostRepository::get_instance()->find_by_tag($tag);
+	return $response->withJson($posts, 200)
+				->withHeader('Content-type', 'application/json');
+});
+
 $app->post("$URL_BASE", function (Request $request, Response $response) {
 	$post = PostRepository::mount_data($request->getBody());
 	$post = PostRepository::get_instance()->persist($post);

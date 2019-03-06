@@ -1,17 +1,22 @@
 
 <aside>
-	<label>Categories:</label>
-	<select name="tag">
-		<option *ngFor="let tag of tags" [ngValue]="tag">{{tag.name}}</option> 
+	<label for="tag">Categories:</label> <br/>
+	<select name="tag" id="tag" (change)="onChangeTag($event.target.value)">
+		<option [value]="-1">All</option> 
+		<option *ngFor="let tag of tags" [value]="tag.id" [ngValue]="tag">{{tag.name}}</option> 
 	</select>
 </aside>
 <section>
 	<header>
-		<h3>My Blog</h3>
+		<h3>
+			My Blog
+			<spinner [size]="18" *ngIf="isLoading" [tickness]="1"></spinner>
+		</h3>
 	</header>
+
 	<article *ngFor = "let post of posts">
 		<span class="content-post autor">{{post.author?.name}}</span>
-		<span class="content-post title">{{post.title}}</span>
+		<span class="content-post title"><a [routerLink]="['/post/view/', post.id]">{{post.title}}</a></span>
 		<ul class="horizontal-list">
 			<li *ngFor = "let cat of post.tags">
 				{{cat.name}}
