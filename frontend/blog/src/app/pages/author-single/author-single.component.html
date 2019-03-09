@@ -1,10 +1,13 @@
 <form [formGroup]="authorForm">
-	<label>id:</label>
-	<input type="text" disabled name="id" [(ngModel)]="author.id" formControlName="id"/>
+	<label><span>id:</span></label>
+	<input type="text" disabled name="id" [(ngModel)]="author.id" formControlName="id" class="input-field"/>
 
-	<label>Name:</label>
-	<input type="text" name="name" [(ngModel)]="author.name" formControlName="name"/>
+	<label><span>Name: <span class="required">*</span></span></label>
+	<input type="text" name="name" [(ngModel)]="author.name" formControlName="name"  class="input-field"/>
 	
+	<br/>
 	<button [routerLink]="['/authors']"> Voltar</button>
 	<button [disabled]="authorForm.invalid" type="button" (click)="onSubmit()">Save</button>
 </form>
+
+
