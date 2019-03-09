@@ -1,0 +1,28 @@
+section {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    font-family: Helvetica, sans-serif;
+    
+    header {
+        h3 {
+            margin: 5px;
+        }
+    }
+    
+    article {
+        margin: 30px 0px;
+        
+        header {
+            background-color: #F5F5F5B3;
+            top: -85px;
+            position: relative;
+            padding: 5px;
+        }
+        
+        img {
+            width: 100%;
+        }
+    }
+}

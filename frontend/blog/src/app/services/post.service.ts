@@ -17,6 +17,10 @@ export class PostService {
 		return this.http.get<Post[]>(this.URL);
 	}
 
+	getPostsByTag(tagId: number): Observable<Post[]> {
+		return this.http.get<Post[]>(`${this.URL}/tag/${tagId}`);
+	}
+
 	getPost(id: number): Observable<Post> {
 		return this.http.get<Post>(`${this.URL}/${id}`);
 	}

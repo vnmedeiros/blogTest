@@ -24,7 +24,8 @@ section header {
 }
 
 section article {
-	margin: 25px;
+	border-bottom: 1px solid #DDD;
+	padding: 30px;
 }
 section article:hover {
 	background-color: $gray-background;

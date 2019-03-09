@@ -8,6 +8,7 @@ import { TagSingleComponent } from './pages/tag-single/tag-single.component';
 import { AuthorSingleComponent } from './pages/author-single/author-single.component';
 import { PostSingleComponent } from './pages/post-single/post-single.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ViewComponent } from './pages/view/view.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
 	{ path: 'post/:id', component: PostSingleComponent},
 	{ path: 'post', component: PostSingleComponent},
 
+	{ path: 'post/view/:id', component: ViewComponent},
 	{ path: '', component: HomeComponent},
 	{ path: 'home', component: HomeComponent}
 ];

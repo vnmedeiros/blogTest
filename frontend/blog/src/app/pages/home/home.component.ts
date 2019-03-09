@@ -11,6 +11,7 @@ import { Tag } from 'src/app/class/Tag';
 })
 export class HomeComponent implements OnInit {
 
+	public isLoading: boolean = true;
 	private posts: Post[];
 	private tags: Tag[];
 
@@ -19,16 +20,31 @@ export class HomeComponent implements OnInit {
 		private tagService: TagService
 	) { }
 
-  ngOnInit() {
+	ngOnInit() {
+		this.isLoading = true;
 		this.postService.getPosts().subscribe(
 			(data: Post[]) => {
 				this.posts = data;
+				this.isLoading = false;
 			},
 			error => {
 				console.log(error);
 			}
 		);
 		this.tagService.getTags().subscribe((data:Tag[]) => this.tags = data);
-  }
+	}
+
+	onChangeTag(tagId) {
+		this.isLoading = true;
+		if (tagId == - 1 )
+			return this.ngOnInit();
+		this.postService.getPostsByTag(tagId).subscribe(
+			(data: Post[]) => {
+				this.posts = data;
+				this.isLoading = false;
+			},
+			error => {console.log(error);}
+		);
+	}
 
 }
