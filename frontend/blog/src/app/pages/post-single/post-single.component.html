@@ -1,29 +1,42 @@
 <form [formGroup]="postForm">
+	<fieldset>
 		<label>id:</label>
-		<input type="text" disabled name="id" [(ngModel)]="post.id" formControlName="id"/>
+		<input type="text" disabled name="id" [(ngModel)]="post.id" formControlName="id" class="input-field"/>
+	</fieldset>
+	
+	<fieldset>
+		<label>title:<span class="required">*</span></label>
+		<input type="text" name="title" [(ngModel)]="post.title" formControlName="title" class="input-field"/>
+	</fieldset>
 
-		<label>title:</label>
-		<input type="text" name="title" [(ngModel)]="post.title" formControlName="title"/>
+	<fieldset>
+		<label>body:<span class="required">*</span></label>
+		<input type="text" name="body" [(ngModel)]="post.body" formControlName="body" class="input-field"/>
+	</fieldset>
 
-		<label>body:</label>
-		<input type="text" name="body" [(ngModel)]="post.body" formControlName="body"/>
-
+	<fieldset>
 		<label>image:</label>
-		<input type="text" name="image" [(ngModel)]="post.image" formControlName="image"/>
+		<input type="text" name="image" [(ngModel)]="post.image" formControlName="image" class="input-field"/>
+	</fieldset>
 
-		<label>author:</label>
-		<select name="author" formControlName="author" [(ngModel)]="post.author">
+	<fieldset>
+		<label>author:<span class="required">*</span></label>
+		<select name="author" formControlName="author" [(ngModel)]="post.author" class="input-field">
 			<option *ngFor="let author of authorList" [ngValue]="author">{{author.name}}</option> 
 		</select>
+	</fieldset>
 
+	<fieldset>
 		<label>published:</label>
-		<input type="text" name="published" [(ngModel)]="post.published" formControlName="published"/>
+		<input type="text" name="published" [(ngModel)]="post.published" formControlName="published" class="input-field"/>
+	</fieldset>
 
+	<fieldset>
 		<label formArrayName="tags" *ngFor="let tag of postForm.controls.tags.controls; let i = index">
-			<input type="checkbox" [formControlName]="i">
-			{{tagList[i].name}}
+			<input type="checkbox" [formControlName]="i"> {{tagList[i].name}}
 		</label>
+	</fieldset>
 
-		<button [routerLink]="['/posts']"> Voltar</button>
-		<button [disabled]="postForm.invalid" type="button" (click)="onSubmit()">Save</button>
-	</form>
+	<button [routerLink]="['/posts']"> Voltar</button>
+	<button [disabled]="postForm.invalid" type="button" (click)="onSubmit()">Save</button>
+</form>

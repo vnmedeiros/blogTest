@@ -1,9 +1,8 @@
-<button [routerLink]="['/tag']"> new</button>
 <table>
 	<thead>
 		<tr>
-			<th>id</th>
-			<th>tag</th>
+			<th>Id</th>
+			<th>Tag</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -11,11 +10,13 @@
 			<td>{{tag.id}}</td>
 			<td>{{tag.name}}</td>
 			<td>
-				<button (click)="deleteTag(tag)"> Delete</button>
-				<button [routerLink]="['/tag', tag.id]">Edit</button>
+				<button (click)="deleteTag(tag)" class="pure-button button-error"> Delete</button>
+				<button [routerLink]="['/tag', tag.id]" class="pure-button button-warning">Edit</button>
 			</td>
 		</tr>
 	</tbody>
 	<tfoot>
 	</tfoot>
 </table>
+
+<button [routerLink]="['/tag']" class="ml-50 pure-button button-secondary"> new</button>

@@ -1,9 +1,8 @@
-<button [routerLink]="['/author']"> new</button>
 <table>
 	<thead>
 		<tr>
-			<th>id</th>
-			<th>name</th>
+			<th>Id</th>
+			<th>Name</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -11,11 +10,13 @@
 			<td>{{author.id}}</td>
 			<td>{{author.name}}</td>
 			<td>
-				<button (click)="deleteAuthor(author)"> Delete</button>
-				<button [routerLink]="['/author', author.id]">Edit</button>
+				<button (click)="deleteAuthor(author)" class="pure-button button-error"> Delete</button>
+				<button [routerLink]="['/author', author.id]" class="pure-button button-warning">Edit</button>
 			</td>
 		</tr>
 	</tbody>
 	<tfoot>
 	</tfoot>
 </table>
+
+<button [routerLink]="['/author']" class="ml-50 pure-button button-secondary"> new</button>

@@ -23,6 +23,24 @@ $container[EntityManager::class] = getEntityManager($container);
 
 $app = new App($container);
 
+$app->add ( new \Slim\Middleware\JwtAuthentication ( [
+	"passthrough" => [
+			"/login"
+	],
+	"path" => [
+			"/authors" ,
+			"/posts",
+			"/tags",
+			"/users"
+	],
+	"secret" => "blogTest",
+	"rules" => [
+		new \Slim\Middleware\JwtAuthentication\RequestMethodRule([
+				"passthrough" => ["GET"]
+		])
+	]
+] ) );
+
 BaseRepository::get_instance()->setEntityManager($container[EntityManager::class]);
 $dir = '../../app/routes';
 foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS)) as $file) {

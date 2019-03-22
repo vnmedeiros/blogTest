@@ -1,13 +1,11 @@
-<button [routerLink]="['/post']"> new</button>
 <table>
 	<thead>
 		<tr>
-			<th>id</th>
-			<th>title</th>
-			<th>slug</th>
-			<th>published</th>
-			<th>author</th>
-			<th>categories</th>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Slug</th>
+			<th>Sublished</th>
+			<th>Author</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,16 +16,8 @@
 			<td>{{post.published}}</td>
 			<td>{{post.author?.name}}</td>
 			<td>
-					<ul>
-						<li *ngFor = "let cat of post.categories">
-							{{cat.name}}
-						</li>
-					</ul>
-			</td>
-			
-			<td>
-				<button (click)="deleteAuthor(post)"> Delete</button>
-				<button [routerLink]="['/post', post.id]">Edit</button>
+				<button (click)="deleteAuthor(post)" class="pure-button button-error"> Delete</button>
+				<button [routerLink]="['/post', post.id]" class="pure-button button-warning">Edit</button>
 			</td>
 		</tr>
 	</tbody>
@@ -35,3 +25,4 @@
 	</tfoot>
 </table>
 
+<button [routerLink]="['/post']" class="ml-50 pure-button button-secondary"> new</button>
