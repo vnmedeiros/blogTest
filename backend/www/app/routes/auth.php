@@ -20,14 +20,15 @@ $app->post("$URL_BASE/login", function (Request $request, Response $response) {
 		}
 		$time = time ();
 		$key = 'blogTest';
+		$expiresIn = $time + (60 * 5);
 		$token = array (
 			'iat' => $time,
-			'exp' => $time + (60 * 5),
+			'exp' => $expiresIn,
 			'data' => ['username' => $user->getName()] 
 		);
 		$jwt = JWT::encode( $token, $key );
 		return $response->withStatus(200)->withHeader('Content-Type', 'application/json')
-				->write(json_encode(['sucess'=>true, 'token'=> $jwt]));
+				->write(json_encode(['sucess'=>true, 'token'=> $jwt, 'expiresIn' => $expiresIn, 'user'=>$user]));
 	} catch ( Exception $e ) {
 		return $response->withStatus(501)->withHeader('Content-Type', 'application/json')
 				->write(['msg'=>'erro inesperado']);
