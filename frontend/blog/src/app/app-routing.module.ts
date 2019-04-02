@@ -9,21 +9,22 @@ import { AuthorSingleComponent } from './pages/author-single/author-single.compo
 import { PostSingleComponent } from './pages/post-single/post-single.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ViewComponent } from './pages/view/view.component';
+import { AuthGuardService as AuthGuard } from '../app/guard/auth-guard.service'
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent},
 	
-	{ path: 'tags', component: TagsComponent},
-	{ path: 'tag/:id', component: TagSingleComponent },
-	{ path: 'tag', component: TagSingleComponent},
+	{ path: 'tags', component: TagsComponent, canActivate: [AuthGuard] },
+	{ path: 'tag/:id', component: TagSingleComponent, canActivate: [AuthGuard] },
+	{ path: 'tag', component: TagSingleComponent, canActivate: [AuthGuard]},
 
-	{ path: 'authors', component: AuthorsComponent},
-	{ path: 'author/:id', component: AuthorSingleComponent},
-	{ path: 'author', component: AuthorSingleComponent},
+	{ path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard]},
+	{ path: 'author/:id', component: AuthorSingleComponent, canActivate: [AuthGuard]},
+	{ path: 'author', component: AuthorSingleComponent, canActivate: [AuthGuard]},
 	
-	{ path: 'posts', component: PostsComponent},
-	{ path: 'post/:id', component: PostSingleComponent},
-	{ path: 'post', component: PostSingleComponent},
+	{ path: 'posts', component: PostsComponent, canActivate: [AuthGuard]},
+	{ path: 'post/:id', component: PostSingleComponent, canActivate: [AuthGuard]},
+	{ path: 'post', component: PostSingleComponent, canActivate: [AuthGuard]},
 
 	{ path: 'post/view/:id', component: ViewComponent},
 	{ path: '', component: HomeComponent},
