@@ -13,7 +13,7 @@ export class AuthService {
 
 	private URL = `${environment.API_URL}/auth`;
 
-	login(email:string, password:string ) {
+	login(email:string, password ) {
 		return this.http.post<any>(`${this.URL}/login`, {"email":email, "password":password})
 			.pipe(map(authResult => {
 				if (authResult) {
